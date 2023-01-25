@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     fetchCurrencies.then((JSdataReady) => {
-      console.log(JSdataReady);
       setCurrencyOptions(JSdataReady);
     });
   }, []);
