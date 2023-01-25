@@ -4,28 +4,41 @@ import "./App.css";
 import { fetchCurrencies } from "./services/fetchCurrencies";
 import SelectCurrency from "./components/LeftBox/selectCurrency";
 import InputCurrency from "./components/LeftBox/Input";
-import BtnBox from "./components/btnBox";
+import ConvertButton from "./components/ConvertButton";
 import ValueInPLN from "./components/RightBox/amountInfo";
 import Output from "./components/RightBox/resultOutput";
 
 function App() {
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  console.log(currencyOptions);
+  const [selectValue, setSelectValue] = useState("EUR");
+  const [inputValue, setInputValue] = useState(0);
+  const [result, setResult] = useState(0);
 
   useEffect(() => {
-
     fetchCurrencies.then((JSdataReady) => {
-
       console.log(JSdataReady);
-
-      for (currency of JSdataReady[0].rates) {
-        setCurrencyOptions((currencyOptions) => [...currencyOptions, currency.code]);
-        console.log(currencyOptions)                            
-      }
-
+      setCurrencyOptions(JSdataReady);
     });
-
   }, []);
+
+  function convertToPLN() {
+    const numberFromInput = inputValue;
+    if (numberFromInput > 0) {
+      const mid = currencyOptions[0].rates.find((element) => element.code === selectValue).mid;
+      const calculatedAmount = (numberFromInput * mid).toFixed(2);
+      setResult(calculatedAmount);
+    } else {
+      alert("Podaj liczbę większą od zera");
+    }
+  }
+
+  function handleSelectChange(e) {
+    setSelectValue(e.target.value);
+  }
+
+  function handleInputValue(e) {
+    setInputValue(e.target.value);
+  }
 
   return (
     <React.Fragment>
@@ -33,15 +46,17 @@ function App() {
         <h1>PRZELICZNIK WALUT</h1>
         <div className="box">
           <div className="left-box">
-            <SelectCurrency />
-            <InputCurrency />            
+            <SelectCurrency selectValue={selectValue} onSelectChange={handleSelectChange} />
+            <InputCurrency inputValue={handleInputValue} />            
           </div>
           <div className="right-box">
             <ValueInPLN />
-            <Output />
+            <Output result={result}/>
           </div>
         </div>
-        <BtnBox />
+        <div className="btn-box">
+          <ConvertButton convert={convertToPLN} />
+        </div>
       </div>
     </React.Fragment>
   );

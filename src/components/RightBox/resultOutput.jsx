@@ -1,6 +1,6 @@
-function Output() {
+function Output({result}) {
   return (
-    <div className="currency amount-box--result"></div>
+    <div className="currency amount-box--result">{result}</div>
   )
 }
 
