@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/przelicznik_walut_react/static/css/main.deb9010b.css",
+    "main.js": "/przelicznik_walut_react/static/js/main.29c5e828.js",
+    "index.html": "/przelicznik_walut_react/index.html",
+    "main.deb9010b.css.map": "/przelicznik_walut_react/static/css/main.deb9010b.css.map",
+    "main.29c5e828.js.map": "/przelicznik_walut_react/static/js/main.29c5e828.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.deb9010b.css",
+    "static/js/main.29c5e828.js"
+  ]
+}
