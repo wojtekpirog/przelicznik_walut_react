@@ -1,4 +1,4 @@
-const url = "https://api.nbp.pl/api/exchangerates/tables/a/today/";
+const url = "http://api.nbp.pl/api/exchangerates/tables/a/";
 
 const fetchCurrencies = fetch(url)
   .then((JSONresponse) => JSONresponse.json())
