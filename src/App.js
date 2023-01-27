@@ -23,7 +23,9 @@ function App() {
   function convertToPLN() {
     const numberFromInput = inputValue;
     if (numberFromInput > 0) {
-      const mid = currencyOptions[0].rates.find((element) => element.code === selectValue).mid;
+      const mid = currencyOptions[0].rates.find(
+        (element) => element.code === selectValue
+      ).mid;
       const calculatedAmount = (numberFromInput * mid).toFixed(2);
       setResult(calculatedAmount);
     } else {
@@ -45,12 +47,15 @@ function App() {
         <h1>PRZELICZNIK WALUT</h1>
         <div className="box">
           <div className="left-box">
-            <SelectCurrency selectValue={selectValue} onSelectChange={handleSelectChange} />
-            <InputCurrency inputValue={handleInputValue} />            
+            <SelectCurrency
+              selectValue={selectValue}
+              onSelectChange={handleSelectChange}
+            />
+            <InputCurrency inputValue={handleInputValue} />
           </div>
           <div className="right-box">
             <ValueInPLN />
-            <Output result={result}/>
+            <Output result={result} />
           </div>
         </div>
         <div className="btn-box">
