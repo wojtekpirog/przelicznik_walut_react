@@ -13,6 +13,7 @@ function App() {
   const [selectValue, setSelectValue] = useState("EUR");
   const [inputValue, setInputValue] = useState(0);
   const [result, setResult] = useState(0);
+  const numberFromInput = inputValue;
 
   useEffect(() => {
     fetchCurrencies.then((JSdataReady) => {
@@ -21,7 +22,6 @@ function App() {
   }, []);
 
   function convertToPLN() {
-    const numberFromInput = inputValue;
     if (numberFromInput > 0) {
       const mid = currencyOptions[0].rates.find(
         (element) => element.code === selectValue

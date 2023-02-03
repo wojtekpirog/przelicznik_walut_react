@@ -1,8 +1,8 @@
-import React from "react";
-
-function ConvertButton({convert}) {
+function ConvertButton({ convert }) {
   return (
-    <button id="button" className="pointer" onClick={convert}>Zamień na PLN</button>    
+    <button id="button" className="pointer" onClick={convert}>
+      Zamień na PLN
+    </button>
   );
 }
 
