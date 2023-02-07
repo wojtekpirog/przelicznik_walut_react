@@ -3,7 +3,7 @@ const url = "https://api.nbp.pl/api/exchangerates/tables/a/";
 const fetchCurrencies = fetch(url)
   .then((JSONresponse) => JSONresponse.json())
   .catch((error) => {
-    console.log(`Error message: ${error.message}`);
+    console.error(`Error message: ${error.message}`);
     alert("Wystąpił błąd podczas pobierania danych.");
   });
 

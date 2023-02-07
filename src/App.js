@@ -1,33 +1,27 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import { fetchCurrencies } from "./services/fetchCurrencies";
-import SelectCurrency from "./components/LeftBox/selectCurrency";
-import InputCurrency from "./components/LeftBox/Input";
+import SelectCurrency from "./components/SelectCurrency";
+import InputCurrency from "./components/Input";
 import ConvertButton from "./components/ConvertButton";
-import ValueInPLN from "./components/RightBox/amountInfo";
-import Output from "./components/RightBox/resultOutput";
+import ValueInPLN from "./components/ValuePln";
+import Output from "./components/ResultOutput";
 
 function App() {
-  const [currencyOptions, setCurrencyOptions] = useState([]);
   const [selectValue, setSelectValue] = useState("EUR");
   const [inputValue, setInputValue] = useState(0);
   const [result, setResult] = useState(0);
-  const numberFromInput = inputValue;
-
-  useEffect(() => {
-    fetchCurrencies.then((JSdataReady) => {
-      setCurrencyOptions(JSdataReady);
-    });
-  }, []);
 
   function convertToPLN() {
-    if (numberFromInput > 0) {
-      const mid = currencyOptions[0].rates.find(
-        (element) => element.code === selectValue
-      ).mid;
-      const calculatedAmount = (numberFromInput * mid).toFixed(2);
-      setResult(calculatedAmount);
+    if (inputValue > 0) {
+      fetchCurrencies.then((JSdataReady) => {
+        const mid = JSdataReady[0].rates.find(
+          (element) => element.code === selectValue
+        ).mid;
+        const calculatedAmount = (inputValue * mid).toFixed(2);
+        setResult(calculatedAmount);
+      });
     } else {
       alert("Podaj liczbę większą od zera");
     }

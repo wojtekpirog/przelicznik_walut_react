@@ -3,6 +3,7 @@ function InputCurrency({ inputValue }) {
     <input
       type="number"
       id="input"
+      required="required"
       className="amount-box--foreign"
       onInput={inputValue}
     />
